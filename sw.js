@@ -27,27 +27,31 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-dcabd99800ac68e2fe6e.js"
+    "url": "webpack-runtime-ff31ed1ced739dade7ee.js"
   },
   {
     "url": "commons.ac9ae8ff19d5e362e55e.css"
   },
   {
-    "url": "commons-649296cc11f7518b6ab5.js"
+    "url": "commons-ebbe61473344182d220d.js"
   },
   {
-    "url": "app-51e11090151479cd1465.js"
+    "url": "app-a66e2ea00a901077481f.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-90c1c317864e403d1dfd.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "285b6e6f330a4e2e02089734afc1af20"
+    "revision": "c0e87aaa0c4037fa65a37e899b0e6ca5"
+  },
+  {
+    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
+    "revision": "dd0018ea3ea932cf30ad74b73b01a745"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "f0b81542e653b90f299c0eacc9c723f1"
+    "revision": "a6096c72663c70f0c1ae3b5f7e5d338c"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -70,12 +74,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   }
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/TillaTheBlog0`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-51e11090151479cd1465.js`))) {
+  if (!resources || !(await caches.match(`/TillaTheBlog0/app-a66e2ea00a901077481f.js`))) {
     return await fetch(event.request)
   }
 
@@ -88,7 +92,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/TillaTheBlog0/offline-plugin-app-shell-fallback/index.html`
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })
