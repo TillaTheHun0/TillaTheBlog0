@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { Link } from 'gatsby'
-import { UserLinks } from '../UserLinks/UserLinks'
+
 import './Footer.css'
 
 export class Footer extends Component {
@@ -14,7 +14,6 @@ export class Footer extends Component {
     }
     return (
       <footer className='footer'>
-        <UserLinks config={config} labeled />
         <div className='notice-container'>
           <h4>{copyright}</h4>
 
@@ -25,7 +24,7 @@ export class Footer extends Component {
             Based on
             {' '}
             <a href='https://github.com/Vagr9K/gatsby-advanced-starter'>
-              Gatsby Advanced Starter
+              This Awesome Starter
             </a>
             .
           </h4>

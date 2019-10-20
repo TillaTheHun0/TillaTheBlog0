@@ -1,0 +1,9 @@
+.header {
+  .nostyle, .nostyle:visited {
+    text-decoration: inherit;
+    color: inherit;
+  }
+
+  display: flex;
+  justify-content: space-between;
+}
