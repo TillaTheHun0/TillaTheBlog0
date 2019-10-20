@@ -10,9 +10,10 @@ export class About extends Component {
     return (
       <div>
         <div className='about'>
-          <h1>
-            My name is Tyler. I write software, especially JavaScript. I play the drums, especially groovin.
-          </h1>
+          <div>
+            <h1>My name is {this.props.config.userName}</h1>
+            <h1>{this.props.config.userDescription}</h1>
+          </div>
         </div>
         <UserLinks config={this.props.config} labeled />
       </div>

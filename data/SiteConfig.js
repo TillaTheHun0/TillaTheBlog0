@@ -14,13 +14,12 @@ const config = {
   postDefaultCategoryID: 'Tech', // Default category for posts.
   dateFromFormat: 'YYYY-MM-DD', // Date format used in the frontmatter.
   dateFormat: 'DD/MM/YYYY', // Date format for display.
-  userName: 'TillaTheHun0', // Username to display in the author segment.
+  userName: 'Tyler', // Username to display in the author segment.
   userEmail: '0tillathehun0@gmail.com', // Email used for RSS feed's author segment
   userTwitter: '', // Optionally renders "Follow Me" in the UserInfo segment.
   userLocation: 'Charleston, SC, USA', // User location to display in the author segment.
-  userAvatar: 'https://github.com/TillaTheHun0.png', // User avatar to display in the author segment.
   userDescription:
-    "I write software, especially JavaScript. I play the drums, especially groovin'", // User description to display in the author segment.
+    "I write the software, especially JavaScript. I play the drums, especially groovin'. I wore out my last soapbox, so I digitized it instead :).", // User description to display in the author segment.
   // Links to social profiles/projects you want to display in the author segment/navigation bar.
   userLinks: [
     {
