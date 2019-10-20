@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import {
   FacebookShareButton,
@@ -13,11 +14,13 @@ import {
   LinkedinIcon,
   RedditIcon
 } from 'react-share'
+
 import urljoin from 'url-join'
+
 import config from '../../../data/SiteConfig'
 import './SocialLinks.css'
 
-class SocialLinks extends Component {
+export class SocialLinks extends Component {
   render () {
     const { postNode, postPath, mobile } = this.props
     const post = postNode.frontmatter
@@ -59,5 +62,3 @@ class SocialLinks extends Component {
     )
   }
 }
-
-export default SocialLinks

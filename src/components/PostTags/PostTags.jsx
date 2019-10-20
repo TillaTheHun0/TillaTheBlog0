@@ -1,8 +1,10 @@
+
 import React, { Component } from 'react'
+
 import { kebab } from 'case'
 import { Link } from 'gatsby'
 
-class PostTags extends Component {
+export class PostTags extends Component {
   render () {
     const { tags } = this.props
     return (
@@ -21,5 +23,3 @@ class PostTags extends Component {
     )
   }
 }
-
-export default PostTags

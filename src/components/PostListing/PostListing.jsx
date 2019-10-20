@@ -1,7 +1,8 @@
+
 import React from 'react'
 import { Link } from 'gatsby'
 
-class PostListing extends React.Component {
+export class PostListing extends React.Component {
   getPostList () {
     const postList = []
     this.props.postEdges.forEach(postEdge => {
@@ -33,5 +34,3 @@ class PostListing extends React.Component {
     )
   }
 }
-
-export default PostListing

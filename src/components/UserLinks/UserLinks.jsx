@@ -1,7 +1,8 @@
+
 import React, { Component } from 'react'
 import './UserLinks.css'
 
-class UserLinks extends Component {
+export class UserLinks extends Component {
   getLinkElements () {
     const { userLinks } = this.props.config
     const { labeled } = this.props
@@ -20,5 +21,3 @@ class UserLinks extends Component {
     return <div className='user-links'>{this.getLinkElements()}</div>
   }
 }
-
-export default UserLinks

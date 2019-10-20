@@ -1,9 +1,12 @@
+
 import React, { Component } from 'react'
 import ReactDisqusComments from 'react-disqus-comments'
+
 import urljoin from 'url-join'
+
 import config from '../../../data/SiteConfig'
 
-class Disqus extends Component {
+export class Disqus extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -47,5 +50,3 @@ class Disqus extends Component {
     )
   }
 }
-
-export default Disqus
