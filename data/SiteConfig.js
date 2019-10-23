@@ -12,8 +12,8 @@ const config = {
   googleAnalyticsID: 'UA-150461558-1', // GA tracking ID.
   disqusShortname: '', // Disqus shortname.
   postDefaultCategoryID: 'Tech', // Default category for posts.
-  dateFromFormat: 'YYYY-MM-DD', // Date format used in the frontmatter.
-  dateFormat: 'DD/MM/YYYY', // Date format for display.
+  dateFromFormat: 'mm-dd-yyyy', // Date format used in the frontmatter.
+  dateFormat: 'mm-dd-yyyy', // Date format for display.
   userName: 'Tyler', // Username to display in the author segment.
   userEmail: '0tillathehun0@gmail.com', // Email used for RSS feed's author segment
   userTwitter: '', // Optionally renders "Follow Me" in the UserInfo segment.

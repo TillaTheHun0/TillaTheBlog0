@@ -2,7 +2,7 @@
 
 const path = require('path')
 const { kebab } = require('case')
-const moment = require('moment')
+const { parse } = require('date-fns')
 const siteConfig = require('./data/SiteConfig')
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -27,8 +27,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     if (Object.prototype.hasOwnProperty.call(node, 'frontmatter')) {
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'slug')) { slug = `/${kebab(node.frontmatter.slug)}` }
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'date')) {
-        const date = moment(node.frontmatter.date, siteConfig.dateFromFormat)
-        if (!date.isValid) { console.warn('WARNING: Invalid date.', node.frontmatter) }
+        const date = parse(node.frontmatter.date, siteConfig.dateFromFormat, new Date())
 
         createNodeField({
           node,
@@ -37,6 +36,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         })
       }
     }
+
     createNodeField({ node, name: 'slug', value: slug })
   }
 }
@@ -80,14 +80,16 @@ exports.createPages = async ({ graphql, actions }) => {
   const postsEdges = markdownQueryResult.data.allMarkdownRemark.edges
 
   postsEdges.sort((postA, postB) => {
-    const dateA = moment(
+    const dateA = parse(
       postA.node.frontmatter.date,
-      siteConfig.dateFromFormat
+      siteConfig.dateFromFormat,
+      new Date()
     )
 
-    const dateB = moment(
+    const dateB = parse(
       postB.node.frontmatter.date,
-      siteConfig.dateFromFormat
+      siteConfig.dateFromFormat,
+      new Date()
     )
 
     if (dateA.isBefore(dateB)) return 1
