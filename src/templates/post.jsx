@@ -4,6 +4,8 @@ import Helmet from 'react-helmet'
 
 import { graphql } from 'gatsby'
 
+import { format } from 'date-fns'
+
 import { MainLayout as Layout } from '../layout'
 import { UserInfo } from '../components/UserInfo/UserInfo'
 import { Disqus } from '../components/Disqus/Disqus'
@@ -12,7 +14,7 @@ import { SocialLinks } from '../components/SocialLinks/SocialLinks'
 import { SEO } from '../components/SEO/SEO'
 import config from '../../data/SiteConfig'
 import './b16-tomorrow-dark.css'
-import './post.css'
+import './post.scss'
 
 export default class PostTemplate extends React.Component {
   render () {
@@ -26,6 +28,7 @@ export default class PostTemplate extends React.Component {
     if (!post.category_id) {
       post.category_id = config.postDefaultCategoryID
     }
+
     return (
       <Layout>
         <div>
@@ -34,13 +37,16 @@ export default class PostTemplate extends React.Component {
           </Helmet>
           <SEO postPath={slug} postNode={postNode} postSEO /> {/* eslint-disable-line */}
           <div>
-            <h1>{post.title}</h1>
+            <div className='post-header'>
+              <h1>{post.title}</h1>
+              <div className='date'>{format(new Date(post.date), config.dateFormat)}</div>
+            </div>
             <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
             <div className='post-meta'>
               <PostTags tags={post.tags} />
               <SocialLinks postPath={slug} postNode={postNode} />
             </div>
-            <UserInfo config={config} />
+            {config.userTwitter && <UserInfo config={config} />}
             <Disqus postNode={postNode} />
           </div>
         </div>
