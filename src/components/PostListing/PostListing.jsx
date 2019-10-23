@@ -6,11 +6,10 @@ import { format } from 'date-fns'
 
 import './post-listing.scss'
 
-export class PostListing extends React.Component {
-  getPostList () {
+export const PostListing = props => {
+  const getPostList = () => {
     const postList = []
-    this.props.postEdges.forEach(postEdge => {
-      console.log(postEdge)
+    props.postEdges.forEach(postEdge => {
       postList.push({
         path: postEdge.node.fields.slug,
         tags: postEdge.node.frontmatter.tags,
@@ -24,21 +23,20 @@ export class PostListing extends React.Component {
     return postList
   }
 
-  render () {
-    const postList = this.getPostList()
-    return (
-      <div className='post-listing'>
-        {/* Your post list here. */
-          postList.map(post => (
-            <div key={post.title} className='post-row'>
-              <Link to={post.path}>
-                <h1>{post.title}</h1>
-              </Link>
-              <div className='date'>{format(new Date(post.date), this.props.config.dateFormat)}</div>
-            </div>
-          ))
-        }
-      </div>
-    )
-  }
+  const postList = getPostList()
+
+  return (
+    <div className='post-listing'>
+      {/* Your post list here. */
+        postList.map(post => (
+          <div key={post.title} className='post-row'>
+            <Link to={post.path}>
+              <h1>{post.title}</h1>
+            </Link>
+            <div className='date'>{format(new Date(post.date), props.config.dateFormat)}</div>
+          </div>
+        ))
+      }
+    </div>
+  )
 }
