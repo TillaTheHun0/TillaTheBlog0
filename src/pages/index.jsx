@@ -16,7 +16,7 @@ class Index extends React.Component {
         <div className='index-container'>
           <Helmet title={config.siteTitle} />
           <SEO /> {/* eslint-disable-line */}
-          <PostListing postEdges={postEdges} />
+          <PostListing postEdges={postEdges} config={config} />
         </div>
       </Layout>
     )

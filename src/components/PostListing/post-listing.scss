@@ -1,0 +1,12 @@
+
+.post-listing {
+  .post-row {
+    display: flex;
+    align-items: center;
+
+    .date {
+      margin-left: 10px;
+      color: grey;
+    }
+  }
+}
