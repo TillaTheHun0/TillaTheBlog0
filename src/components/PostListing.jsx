@@ -1,10 +1,21 @@
 
 import React from 'react'
+
+import styled from '@emotion/styled'
+
 import { Link } from 'gatsby'
 
 import { format } from 'date-fns'
 
-import './post-listing.scss'
+const PostListingRow = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const PostListingRowDate = styled.div`
+  margin-left: 10px;
+  color: grey;
+`
 
 export const PostListing = props => {
   const getPostList = () => {
@@ -26,15 +37,15 @@ export const PostListing = props => {
   const postList = getPostList()
 
   return (
-    <div className='post-listing'>
+    <div>
       {/* Your post list here. */
         postList.map(post => (
-          <div key={post.title} className='post-row'>
+          <PostListingRow key={post.title}>
             <Link to={post.path}>
               <h1>{post.title}</h1>
             </Link>
-            <div className='date'>{format(new Date(post.date), props.config.dateFormat)}</div>
-          </div>
+            <PostListingRowDate>{format(new Date(post.date), props.config.dateFormat)}</PostListingRowDate>
+          </PostListingRow>
         ))
       }
     </div>

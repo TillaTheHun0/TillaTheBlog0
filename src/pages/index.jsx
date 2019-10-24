@@ -4,8 +4,8 @@ import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 
 import { MainLayout as Layout } from '../layout'
-import { PostListing } from '../components/PostListing/PostListing'
-import { SEO } from '../components/SEO/SEO'
+import { PostListing } from '../components/PostListing'
+import { SEO } from '../components/SEO'
 import config from '../../data/SiteConfig'
 
 export const Index = props => {

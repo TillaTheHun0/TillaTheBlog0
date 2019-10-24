@@ -7,7 +7,7 @@ import { Link } from 'gatsby'
 export const PostTags = props => {
   const { tags } = props
   return (
-    <div className='post-tag-container'>
+    <div>
       {tags &&
         tags.map(tag => (
           <Link

@@ -1,5 +1,6 @@
 
 import React from 'react'
+
 import { Follow } from 'react-twitter-widgets'
 
 export const UserInfo = props => {

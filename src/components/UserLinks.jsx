@@ -1,19 +1,32 @@
 
 import React from 'react'
-import './UserLinks.css'
+
+import styled from '@emotion/styled'
+
+const UserLink = styled.div`
+  margin: auto 10px;
+`
+
+const UserLinksContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 100%;
+`
 
 const LinkElements = props => {
   const { userLinks } = props.config
   const { labeled } = props
 
   return userLinks.map(link => (
-    <div key={link.label} className='user-link'>
+    <UserLink key={link.label}>
       <a href={link.url}>
         <button type='button'>
           {labeled ? link.label : ''}
         </button>
       </a>
-    </div>
+    </UserLink>
   ))
 }
 
@@ -24,8 +37,8 @@ export const UserLinks = props => {
   }
 
   return (
-    <div className='user-links'>
+    <UserLinksContainer>
       <LinkElements {...props} />
-    </div>
+    </UserLinksContainer>
   )
 }

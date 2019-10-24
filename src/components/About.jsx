@@ -1,19 +1,27 @@
 
 import React from 'react'
 
-import { UserLinks } from '../UserLinks/UserLinks'
+import styled from '@emotion/styled'
 
-import './About.css'
+import { UserLinks } from './UserLinks'
+
+const AboutContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  min-height: 300px;
+`
 
 export const About = props => {
   return (
     <div>
-      <div className='about'>
+      <AboutContainer>
         <div>
           <h1>My name is {props.config.userName}</h1>
           <h1>{props.config.userDescription}</h1>
         </div>
-      </div>
+      </AboutContainer>
       <UserLinks config={props.config} labeled />
     </div>
   )

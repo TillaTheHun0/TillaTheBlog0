@@ -1,5 +1,8 @@
 
 import React from 'react'
+
+import styled from '@emotion/styled'
+
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -17,8 +20,26 @@ import {
 
 import urljoin from 'url-join'
 
-import config from '../../../data/SiteConfig'
-import './SocialLinks.css'
+import config from '../../data/SiteConfig'
+
+const SocialLinksContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: 15px 0;
+
+  > div {
+    margin: 5px 15px;
+    cursor: pointer;
+  }
+`
+
+const ShareCount = styled.div`
+  text-align: center;
+`
 
 export const SocialLinks = props => {
   const { postNode, postPath, mobile } = props
@@ -27,11 +48,11 @@ export const SocialLinks = props => {
   const iconSize = mobile ? 36 : 48
   const filter = count => (count > 0 ? count : '')
   const renderShareCount = count => (
-    <div className='share-count'>{filter(count)}</div>
+    <ShareCount>{filter(count)}</ShareCount>
   )
 
   return (
-    <div className='social-links'>
+    <SocialLinksContainer>
       <RedditShareButton url={url} title={post.title}>
         <RedditIcon round size={iconSize} />
         <RedditShareCount url={url}>
@@ -57,6 +78,6 @@ export const SocialLinks = props => {
       <TelegramShareButton url={url}>
         <TelegramIcon round size={iconSize} />
       </TelegramShareButton>
-    </div>
+    </SocialLinksContainer>
   )
 }

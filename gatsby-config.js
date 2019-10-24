@@ -21,6 +21,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-ramda',
     'gatsby-plugin-sass',
+    'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-source-filesystem',
       options: {

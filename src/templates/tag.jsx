@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 
 import { MainLayout as Layout } from '../layout'
-import { PostListing } from '../components/PostListing/PostListing'
+import { PostListing } from '../components/PostListing'
 import config from '../../data/SiteConfig'
 
 export default class TagTemplate extends React.Component {
