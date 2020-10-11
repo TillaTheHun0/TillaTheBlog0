@@ -4,8 +4,6 @@ import React from 'react'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { Link } from 'gatsby'
-
 const FooterContainer = styled('footer')`
   justify-content: center;
   align-content: center;
@@ -23,7 +21,6 @@ const NoticeContainer = styled.div`
 
 export const Footer = props => {
   const { config } = props
-  const url = config.siteRss
   const { copyright } = config
   if (!copyright) {
     return null
@@ -38,10 +35,6 @@ export const Footer = props => {
         `}
       >
         <h4>{copyright}</h4>
-
-        <Link to={url}>
-          <button>Subscribe</button>
-        </Link>
         <h4>
           Based on
           {' '}

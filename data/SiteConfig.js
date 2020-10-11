@@ -7,7 +7,6 @@ const config = {
   siteUrl: 'https://tillathe.blog', // Domain of your website without pathPrefix.
   pathPrefix: '', // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
   siteDescription: 'A Blog For me to talk about things I like. Built with Gatsby', // Website description used for RSS feeds/meta description tag.
-  siteRss: '/rss.xml', // Path to the RSS file.
   siteFBAppID: '', // FB Application ID for using app insights
   googleAnalyticsID: '', // GA tracking ID.
   disqusShortname: '', // Disqus shortname.
