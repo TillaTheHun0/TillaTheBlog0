@@ -7,6 +7,10 @@ import urljoin from 'url-join'
 import config from '../../data/SiteConfig'
 
 export const Disqus = props => {
+  if (!config.disqusShortname) {
+    return null
+  }
+
   const [state, setState] = useState({
     toasts: []
   })
@@ -18,9 +22,7 @@ export const Disqus = props => {
   }
 
   const { postNode } = props
-  if (!config.disqusShortname) {
-    return null
-  }
+
   const post = postNode.frontmatter
   const url = urljoin(
     config.siteUrl,
