@@ -22,6 +22,15 @@ module.exports = {
     'gatsby-plugin-ramda',
     'gatsby-plugin-emotion',
     {
+      resolve: 'gatsby-theme-mdx-deck',
+      options: {
+        // source directory
+        contentPath: `${__dirname}/src/content/decks`,
+        // base path for routes generate by this theme
+        basePath: 'decks'
+      }
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'assets',
@@ -32,7 +41,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'posts',
-        path: `${__dirname}/content/`
+        path: `${__dirname}/src/content/posts`
       }
     },
     {
