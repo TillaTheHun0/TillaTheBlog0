@@ -20,7 +20,6 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-ramda',
-    'gatsby-plugin-sass',
     'gatsby-plugin-emotion',
     {
       resolve: 'gatsby-source-filesystem',
@@ -55,7 +54,7 @@ module.exports = {
         ]
       }
     },
-    {
+    config.googleAnalyticsID && {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: config.googleAnalyticsID
@@ -70,7 +69,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-catch-links',
-    'gatsby-plugin-twitter',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -96,80 +94,6 @@ module.exports = {
         ]
       }
     },
-    'gatsby-plugin-offline',
-    {
-      resolve: 'gatsby-plugin-feed',
-      options: {
-        setup (ref) {
-          const ret = ref.query.site.siteMetadata.rssMetadata
-          ret.allMarkdownRemark = ref.query.allMarkdownRemark
-          ret.generator = 'GatsbyJS Advanced Starter'
-          return ret
-        },
-        query: `
-        {
-          site {
-            siteMetadata {
-              rssMetadata {
-                site_url
-                feed_url
-                title
-                description
-                image_url
-                copyright
-              }
-            }
-          }
-        }
-      `,
-        feeds: [
-          {
-            serialize (ctx) {
-              const { rssMetadata } = ctx.query.site.siteMetadata
-              return ctx.query.allMarkdownRemark.edges.map(edge => ({
-                categories: edge.node.frontmatter.tags,
-                date: edge.node.fields.date,
-                title: edge.node.frontmatter.title,
-                description: edge.node.excerpt,
-                url: rssMetadata.site_url + edge.node.fields.slug,
-                guid: rssMetadata.site_url + edge.node.fields.slug,
-                custom_elements: [
-                  { 'content:encoded': edge.node.html },
-                  { author: config.userEmail }
-                ]
-              }))
-            },
-            query: `
-            {
-              allMarkdownRemark(
-                limit: 1000,
-                sort: { order: DESC, fields: [fields___date] },
-              ) {
-                edges {
-                  node {
-                    excerpt
-                    html
-                    timeToRead
-                    fields {
-                      slug
-                      date
-                    }
-                    frontmatter {
-                      title
-                      cover
-                      date
-                      category
-                      tags
-                    }
-                  }
-                }
-              }
-            }
-          `,
-            output: config.siteRss
-          }
-        ]
-      }
-    }
-  ]
+    'gatsby-plugin-offline'
+  ].filter(Boolean)
 }
