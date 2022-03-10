@@ -1,8 +1,6 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-
-import "../styles/global.css";
 ---
 
 <html lang="en" data-theme="black">
@@ -10,6 +8,10 @@ import "../styles/global.css";
     <meta charset="utf-8" />
     <title>Tyler Hall - Web Developer</title>
     <base href="/" />
+
+    <style global>
+      @import "../styles/global.css";
+    </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta

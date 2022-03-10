@@ -6,4 +6,11 @@ tasks:
   - init: yarn install && yarn run build
     command: yarn run start
 
+ports:
+  - port: 3000
+    visibility: public
+    onOpen: ignore
 
+vscode:
+  extensions:
+    - astro-build.astro-vscode
