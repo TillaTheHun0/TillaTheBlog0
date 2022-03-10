@@ -21,7 +21,7 @@ const posts = allPosts.filter(post => post.published && isPost(post, live));
   {posts.map(post => {
     return (
       <div class="py-4">
-        <a href={'/blog/posts/' + post.slug} class="text-gray-600">{post.title}</a>
+        <a href={'/blog/posts/' + post.slug}>{post.title}</a>
 
         <p class="text-sm">
           {format(new Date(post.publishedDate), 'MMMM dd, yyyy')}

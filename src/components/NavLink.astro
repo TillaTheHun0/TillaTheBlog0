@@ -3,6 +3,6 @@ const { href, title, active } = Astro.props;
 const { pathname: path } = Astro.request.url;
 ---
 
-<a href={href} title={title} class={path.startsWith(href) ? active: ''}>
+<a role="button" href={href} title={title} class={path.startsWith(href) ? `${active}`: ''}>
   <slot/>
 </a>
