@@ -11,7 +11,7 @@ function isPost(post: any, liveStreams: boolean) {
 
 const { live } = Astro.props;
 
-let allPosts = Astro.fetchContent('../pages/blog/posts/*.md');
+let allPosts = Astro.fetchContent('../pages/posts/*.md');
 allPosts = allPosts.sort((a, b) => new Date(b.publishedDate).valueOf() - new Date(a.publishedDate).valueOf());
 
 const posts = allPosts.filter(post => post.published && isPost(post, live));
@@ -21,7 +21,7 @@ const posts = allPosts.filter(post => post.published && isPost(post, live));
   {posts.map(post => {
     return (
       <div class="py-4">
-        <a href={'/blog/posts/' + post.slug}>{post.title}</a>
+        <a href={'/posts/' + post.slug}>{post.title}</a>
 
         <p class="text-sm">
           {format(new Date(post.publishedDate), 'MMMM dd, yyyy')}

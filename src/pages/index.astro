@@ -1,13 +1,8 @@
-<html lang="en">
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Posts from '../components/Posts.astro';
+---
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Tyler Hall - Fullstack Web Developer</title>
-  <meta http-equiv="refresh" content="0; URL=/blog" />
-</head>
-
-<body>
-</body>
-
-</html>
+<BaseLayout>
+  <Posts live={false}/>
+</BaseLayout>
