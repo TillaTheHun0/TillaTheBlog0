@@ -20,6 +20,8 @@ layout: ../layouts/BaseLayout.astro
   </div>
 
   <p class="bio py-4">
-    I write the software, especially JavaScript. I play the drums, especially groovin'. I wore out my last soapbox, so I digitized this one instead :).
+    I write the software, especially JavaScript. I play the drums, especially groovin'.
+    I wore out my last soapbox, so I digitized this one instead :).
+    Mostly a way for me to write things down so I don't forget.
   </p>
 </div>
