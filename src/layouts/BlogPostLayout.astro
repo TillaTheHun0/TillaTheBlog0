@@ -13,11 +13,13 @@ const stats = readingTime(content.astro.source);
 <BaseLayout>
   <div class="flex flex-grow justify-center min-h-screen">
     <article class="w-screen max-w-4xl p-8">
-      <h2 class="text-gray-600 text-2xl">{content.title}</h2>
+      <h1 class="text-primary text-2xl">{content.title}</h1>
 
-      <span class="font-light text-sm">
+      <span class="font-light text-sm bg-accent text-accent-content my-2">
         {format(new Date(content.publishedDate), 'MMMM dd, yyyy')} - {stats.minutes > 1 ?  Math.ceil(stats.minutes) : 1} min read
       </span>
+
+      <div class="divider" />
 
       <slot/>
     </article>  

@@ -21,7 +21,6 @@ export default {
       //     ? process.env.HMR_HOST.substring("https://".length)
       //     : "localhost",
       // },
-      hmr: false
     },
   },
 };
