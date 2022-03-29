@@ -5,8 +5,40 @@
 @layer base {
   h1 {
     @apply text-4xl;
+    @apply mb-4;
   }
   h2 {
     @apply text-3xl;
+    @apply mb-3;
   }
+
+  p {
+    @apply mb-3;
+  }
+
+  blockquote {
+    @apply mb-3;
+    @apply px-3;
+    @apply border-l-accent border-l-4;
+  }
+
+  code {
+    @apply px-1;
+    @apply text-accent-content;
+    @apply bg-accent;
+  }
+
+  /* See below for workaround. This isn't working for some reason */
+  /* .astro-code code {
+    @apply px-inherit;
+    @apply text-inherit;
+    @apply bg-inherit;
+  } */
+}
+
+.astro-code code {
+  padding-left: inherit;
+  padding-right: inherit;
+  color: inherit;
+  background-color: inherit;
 }
