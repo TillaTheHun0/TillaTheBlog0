@@ -1,7 +1,7 @@
 ---
 title: 'Using Zod to Parse Function Schemas'
 description: 'Zod schemas can be used to perform complex function schema validation'
-draft: true
+draft: false
 slug: 2022-03-11-using-zod-to-parse-function-schemas
 publishedDate: '2022-03-11 02:00 PM EST'
 layout: ../../layouts/BlogPostLayout.astro
