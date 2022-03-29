@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>  
-  <link rel="stylesheet" href="/assets/asset.4679d536.css"></link>
+  <link rel="stylesheet" href="/assets/asset.58996e5e.css"></link>
 </head>
 
   <body>
@@ -98,11 +98,13 @@
       <main class="flex flex-grow justify-center min-h-screen p-4">
         <div class="flex flex-grow justify-center min-h-screen">
     <article class="w-screen max-w-4xl p-8">
-      <h2 class="text-gray-600 text-2xl">Using Zod to Parse Function Schemas</h2>
+      <h1 class="text-primary text-2xl">Using Zod to Parse Function Schemas</h1>
 
-      <span class="font-light text-sm">
+      <span class="font-light text-sm bg-accent text-accent-content my-2">
         March 11, 2022 - 5 min read
       </span>
+
+      <div class="divider"></div>
 
       <p>Data validation, ensuring the data your system receives is in some expected shape, is crucial for a mature system. The most important part of a system, the business logic, expects and provides data in a particular shape, and so validating these shapes is an important part of running and testing your business logic.</p><p>There are a ton of options. TypeScript is widely used and will provide compile time checks on your code. Most systems require <em>runtime</em> validation at its boundaries. For example, I may have a web server endpoint that expects a certain payload shape that it will need to validate, at runtime. I can’t use TypeScript for that. In addition, TypeScript adds a build step (unless you use <a href="https://deno.land/">Deno</a> 🙂), and TypeScript checking can be bypassed using catchall types like <code>any</code> and <code>unknown</code>. I can disallow those types, using <code>strict</code>, but I now am beholden to library types, types I don’t have control over or may be incorrect. So then using the <code>any</code> escape-hatch becomes an exercise in design and discipline, for each dev that works on the system. At the very least, that’s cognitive overhead that can’t be ignored, and at its worst, an obstacle to delivering quality software.</p><blockquote>
 <p>My last points were not to knock TypeScript, it’s great and we use it. My point is that <strong>it takes experience and discernment to know where TypeScript is a boon, and where TypeScript is an obstacle</strong>. TypeScript catches <em>tons</em> of common bugs, but it’s just another tool in the toolbox. It takes a good developer to decide how and when, and to what extent, to use it.</p>
