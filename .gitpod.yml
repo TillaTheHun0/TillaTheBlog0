@@ -4,10 +4,15 @@
 
 tasks:
   - init: yarn install && yarn run build
-    command: yarn run start
+    command: |
+      export HMR_HOST=`gp url 24678`
+      yarn run start
 
 ports:
   - port: 3000
+    visibility: public
+    onOpen: ignore
+  - port: 24678
     visibility: public
     onOpen: ignore
 

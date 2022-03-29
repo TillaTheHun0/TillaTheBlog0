@@ -1,3 +1,4 @@
+/** @type {import('astro').AstroUserConfig} */
 export default {
   // projectRoot: '.',     // Where to resolve all URLs relative to. Useful if you have a monorepo project.
   pages: './src/pages', // Path to Astro components, pages, and data
@@ -9,7 +10,18 @@ export default {
   },
   devOptions: {
     // hostname: 'localhost',  // The hostname to run the dev server on.
-    port: 3000,             // The port to run the dev server on.
     tailwindConfig: './tailwind.config.js',     // Path to tailwind.config.js if used, e.g. './tailwind.config.js'
-  }
+  },
+  vite: {
+    server: {
+      // hmr: {
+      //   port: 24678,
+      //   clientPort: process.env.HMR_HOST ? 443 : 24678,
+      //   host: process.env.HMR_HOST
+      //     ? process.env.HMR_HOST.substring("https://".length)
+      //     : "localhost",
+      // },
+      hmr: false
+    },
+  },
 };
