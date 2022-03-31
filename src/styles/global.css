@@ -5,11 +5,19 @@
 @layer base {
   h1 {
     @apply text-4xl;
+    @apply font-medium;
     @apply mb-4;
   }
   h2 {
     @apply text-3xl;
+    @apply font-medium;
     @apply mb-3;
+  }
+
+  h3 {
+    @apply text-xl;
+    @apply font-medium;
+    @apply mb-2;
   }
 
   p {
@@ -34,6 +42,20 @@
     @apply text-inherit;
     @apply bg-inherit;
   } */
+
+  a {
+    @apply underline;
+    @apply text-secondary;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+}
+
+.astro-code {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .astro-code code {
