@@ -96,27 +96,25 @@
   </div>
 </div>
       <main class="flex flex-grow justify-center min-h-screen p-4">
-        <div class="text-2xl w-4/5">
-  <div class="py-4">
-        <a href="/posts/2022-03-31-using-cloudfront-to-redirect-http-to-https-on-apigateway">Using CloudFront to Redirect HTTP -&gt; HTTPS on ApiGateway</a>
+        <div class="flex flex-grow justify-center min-h-screen">
+    <article class="w-screen max-w-4xl p-8">
+      <h1 class="text-primary text-2xl">Using CloudFront to Redirect HTTP -&gt; HTTPS on ApiGateway</h1>
 
-        <p class="text-sm">
-          March 31, 2022
-        </p>
-    </div><div class="py-4">
-        <a href="/posts/2022-03-11-using-zod-to-parse-function-schemas">Using Zod to Parse Function Schemas</a>
+      <span class="font-light text-sm bg-accent text-accent-content my-2">
+        March 31, 2022 - 4 min read
+      </span>
 
-        <p class="text-sm">
-          March 11, 2022
-        </p>
-    </div><div class="py-4">
-        <a href="/posts/2022-02-23-i-built-a-blog-using-astro">I built a blog using Astro</a>
+      <div class="divider"></div>
 
-        <p class="text-sm">
-          February 23, 2022
-        </p>
-    </div>
-</div>
+      <p>ApiGateway is great service for quickly spinning up a resilient, performant API layer for your application.</p><p>An increasingly common practice, as a result of putting frameworks like <a href="https://nextjs.org/">NextJS</a>, <a href="https://kit.svelte.dev/">SvelteKit</a>, and <a href="https://arc.codes/docs/en/get-started/quickstart">Architect</a> behind ApiGateway on a Lambda integration, is to serve static assets, as well as data, using a single ApiGateway. The ApiGateway is assigned a Custom Domain name, and serves the web applciation, assets, and the api the serves the data to power it.</p><h2 id="the-problem">The Problem</h2><p>When typing a url into a browser, if the protocol is not specified, most browsers will default to <code>http</code>. If your site is served up via ApiGateway, this will result in a failure to connect and an error:</p><p><img src="https://blog.hyper.io/content/images/2022/03/Screen-Shot-2022-03-31-at-5.55.12-PM.png" alt="This site can't be reached"></p><p>This is because ApiGateway only supports <code>https</code>. This isn’t a great user experience. Instead of an error, it would be great to redirect <code>http</code> -> <code>https</code>.Unfortunately, this involves more moving parts than is expected. There isn’t a setting that you can toggle in ApiGateway; <code>http</code> isn’t supported. To get around this, most solutions use CloudFront to perform this redirect. There were some tutorials that already exist on how to do this, but all them were missing some key details. This post will describe how I used CloudFront in front of ApiGateway to redirect <code>http</code> to <code>https</code>.</p><h2 id="set-up-cloudfront">Set up CloudFront</h2><p>In order to set up CloudFront to redirect <code>http</code> to <code>https</code>, you will need to set up a CloudFront distribution to:</p><ol>
+<li>redirect http -> https</li>
+<li>forward all traffic to the <strong>invoke url</strong> of your ApiGateway</li>
+</ol><p>There some quirks to this, that I will get into later in this post</p><p>First, navigate to the ApiGateway dashboard and take note of the invoke url for your Gateway.</p><p>Next, navigate to the CloudFront dashboard and create a new CloudFront Distribution.</p><p>For <strong>Origin Domain</strong> paste in your ApiGateway’s invoke URL.</p><p>For <strong>Origin Path</strong> if you are using your <strong>default</strong> stage, leave blank.</p><p>For <strong>Name</strong>, name the origin whatever you’d like.</p><p>Under <strong>Viewer Protocol Policy</strong>, check <strong>Redirect HTTP to HTTPS</strong></p><p>Under <strong>Allowed HTTP Methods</strong>, check <strong>GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE</strong></p><p><strong>This Next Piece is Important!</strong></p><p>Scroll down to <strong>Cache key and origin requests</strong></p><p>Under <strong>Cache Policy</strong> choose <strong>CachingDisabled</strong> policy. This will prevent CloudFront from caching responses from your ApiGateway.</p><p>Under <strong>Origin request policy</strong> choose <strong>AllViewer</strong> policy. This will make CloudFront forward all headers it receives from the request to your ApiGateway. <strong>You will need this if your application uses cookies or Authorization header for AuthN/Z</strong>.</p><p><strong>If your ApiGateway uses a custom domain, this next piece is important!</strong></p><p>Scroll down to <strong>Settings</strong></p><p>Under <strong>Alternate domain name (CNAME)</strong> add the custom domain that is currently assigned to your ApiGateway. If you’re using ACM, choose the corresponding certificate for that custom domain.</p><p>By default, ApiGateway has CORS disabled. If CORS is disabled on your ApiGateway, <strong>DO NOT</strong> remove the custom domain configuration from your ApiGateway. The custom domain configuration <strong>should match</strong> between CloudFront and ApiGateway. This will ensure requests are not rejected by ApiGateway due to CORS.</p><p>Create the Distribution. After a few minutes, your Distribution should be <strong>deployed</strong>.</p><p>Copy your <strong>Distribution domain name</strong>, and update your DNS, that currently resolves to your ApiGateway, to instead resolve to your Distribution’s domain name. It may take some time for DNS to propagate.</p><p>This should be all you need to set up CloudFront in front of your ApiGateway, in order to redirect <code>http</code> -> <code>https</code>. You can verify by navigating to your site, being sure to use the <code>http</code> protocol. Do this in a browser, and view the redirect in the network dev tools tab. You can also use <code>cURL</code> with the <code>-L</code> flag to follow redirects and see the redirects listed out listed out.</p><h2 id="the-important-bits">The important bits</h2><p>Most of this is probably self explanatory. The pieces that aren’t as intuitive:</p><ol>
+<li>The <strong>Origin request policy</strong> <strong>MUST</strong> forward all headers received to ApiGateway. AWS has a precanned policy called <strong>AllViewer</strong> that does this, but you can also create your own. Just make sure the headers you need are forwarded to ApiGateway by CloudFront</li>
+<li>If CORS is disabled for ApiGateway, the custom domain configuration <strong>MUST</strong> exist on both the CloudFront distribution and the ApiGateway. Otherwise, ApiGateway will reject the request.</li>
+</ol><p>Hopefully this was helpful!</p>
+    </article>  
+  </div>
       </main>
     <footer>
   <div class="bg-accent py-4 flex justify-center">
