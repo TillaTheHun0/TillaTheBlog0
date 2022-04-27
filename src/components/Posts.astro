@@ -3,28 +3,29 @@ import { format } from 'date-fns';
 
 function isPost(post: any, liveStreams: boolean) {
   if (liveStreams) {
-    return post.title.includes('Unfiltered');  
+    return post.frontmatter.title.includes('Unfiltered');  
   }
 
-  return !post.title.includes('Unfiltered');
+  return !post.frontmatter.title.includes('Unfiltered');
 }
 
 const { live } = Astro.props;
 
-let allPosts = Astro.fetchContent('../pages/posts/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.publishedDate).valueOf() - new Date(a.publishedDate).valueOf());
+let allPosts = await Astro.glob('../pages/posts/*.md');
 
-const posts = allPosts.filter(post => !post.draft && isPost(post, live));
+allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishedDate).valueOf() - new Date(a.frontmatter.publishedDate).valueOf());
+
+const posts = allPosts.filter(post => !post.frontmatter.draft && isPost(post, live));
 ---
 
 <div class="text-2xl w-4/5">
   {posts.map(post => {
     return (
       <div class="py-4">
-        <a href={'/posts/' + post.slug}>{post.title}</a>
+        <a href={'/posts/' + post.frontmatter.slug}>{post.frontmatter.title}</a>
 
         <p class="text-sm">
-          {format(new Date(post.publishedDate), 'MMMM dd, yyyy')}
+          {format(new Date(post.frontmatter.publishedDate), 'MMMM dd, yyyy')}
         </p>
     </div>
     );
