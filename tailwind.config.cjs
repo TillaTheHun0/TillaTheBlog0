@@ -1,6 +1,5 @@
 module.exports = {
   mode: 'jit',
-  content: ['./public/**/*.html', './src/**/*.{astro,js,jsx,svelte,md}'],
+  content: ['./public/**/*.html', './src/**/*.{astro,js,jsx,ts,tsx,vue}'],
   plugins: [require("daisyui")],
-  // more options here
 };
